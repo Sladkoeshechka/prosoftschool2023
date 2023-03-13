@@ -1,0 +1,11 @@
+#include <iostream>
+#include "first_task.h"
+
+int main()
+{
+    NewA a1(1, 2);
+    NewA a2(2, 3);
+    std::cout << (a1 >= a2) << (a1 <= a2) << (a1 == a2) << (a1 != a2) << std::endl;;
+    std::cout << (a1 >= 4) << (a1 <= 4) << (a1 == 4) << (a1 != 4) << std::endl;
+    std::cout << (a1 >= 4.0) << (a1 <= 4.0) << (a1 == 4.0) << (a1 != 4.0) << std::endl;;
+}
