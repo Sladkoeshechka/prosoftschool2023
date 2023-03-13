@@ -1,4 +1,9 @@
-class NewA
+#ifndef NEWA_CLASS
+#define NEWA_CLASS
+
+#include "othercomparisonoperators.h"
+
+class NewA : public OtherComparisonOperators<NewA>
 {
 public:
     NewA(int a, int b) : m_a(a), m_b(b){}
@@ -29,3 +34,5 @@ private:
     int m_a = 0;
     int m_b = 0;
 };
+
+#endif // NEWA_CLASS
