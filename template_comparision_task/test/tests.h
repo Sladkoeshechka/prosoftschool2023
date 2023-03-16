@@ -4,6 +4,8 @@
 namespace unittest
 {
     void first_task_test();
+
+    void second_task_test();
 }
 
 #endif // TESTS_H
