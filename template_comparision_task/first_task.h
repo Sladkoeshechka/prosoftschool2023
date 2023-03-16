@@ -1,6 +1,7 @@
 #ifndef NEWA_H
 #define NEWA_H
 
+
 #include "othercomparisonoperators.h"
 
 class NewA : public OtherComparisonOperators<NewA>
@@ -47,3 +48,4 @@ private:
 };
 
 #endif // NEWA_H
+
