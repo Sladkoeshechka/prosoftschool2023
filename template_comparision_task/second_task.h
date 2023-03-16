@@ -1,6 +1,7 @@
 #include <type_traits>
 
 #include "b.h"
+#include "othercomparisonoperators.h"
 
 #ifndef A_CLASS
 #define A_CLASS
@@ -15,7 +16,7 @@ struct any_of
 template <typename T, typename ...OtherTypes>
 constexpr bool any_of_v = any_of<T, OtherTypes...>::value;
 
-class A
+class A : public OtherComparisonOperators<A>
 {
 public:
     A(int a, int b) : m_a(a), m_b(b){}
@@ -29,7 +30,7 @@ public:
 
     template <typename OtherT>
     std::enable_if_t<any_of_v<OtherT, A, B>, bool> 
-    operator>(const A& other) const
+    operator>(const OtherT& other) const
     {
         return (m_a > other.m_a) && (m_b > other.m_b);
     }
