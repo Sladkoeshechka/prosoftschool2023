@@ -2,6 +2,7 @@
 #include "tests.h"
 #include "../first_task.h"
 #include "../second_task.h"
+#include "../hasoperators.h"
 
 void unittest::first_task_test()
 {
@@ -24,11 +25,11 @@ void unittest::first_task_test()
 
 
     //comparing to int
-    ASSERT(!(a1 >= 4));
-    ASSERT(a1 >= 0);
-
     ASSERT(a1 <= 4);
     ASSERT(a1 <= 1);
+
+    ASSERT(!(a1 >= 4));
+    ASSERT(a1 >= 0);
 
     ASSERT(!(a1 == 4));
     ASSERT(a1 == 1);
@@ -38,13 +39,13 @@ void unittest::first_task_test()
 
 
     //comparing to double
-    ASSERT(!(a1 >= 4.0));
-    ASSERT(a1 >= 0.0);
-    ASSERT(a1 >= 0.5);
-
     ASSERT(a1 <= 4.0);
     ASSERT(a1 <= 1.0);
     ASSERT(a1 <= 1.5);
+
+    ASSERT(!(a1 >= 4.0));
+    ASSERT(a1 >= 0.0);
+    ASSERT(a1 >= 0.5);
 
     ASSERT(!(a1 == 4.0));
     ASSERT(a1 == 1.0);
@@ -58,16 +59,55 @@ void unittest::first_task_test()
 
 void unittest::second_task_test()
 {
-        A a1(3, 5);
-        A a2(1, 2);
-        std::cout << (a1 > a2) << (a1 < a2) << std::endl;
-        std::cout << (a1 > 4) << (a1 < 4) << (a2 > 10) << (a2 < 10) << std::endl;
-        std::cout << (a1 >= a2) << (a1 <= a2) << (a1 == a2) << (a1 != a2) << std::endl;
-        std::cout << (a1 >= 3) << (a1 <= 3) << (a1 == 3) << (a1 != 3) << std::endl;
+    A a1(1, 2);
+    A a2(2, 3);
 
-        B b1(1 ,2);
-        std::cout << (a1 > b1) << (a1 < b1) << std::endl;
-        std::cout << (a1 >= b1) << (a1 <= b1) << (a1 == b1) << (a1 != b1) << std::endl;
+    //compare to A
+    ASSERT(a1 <= a1);
+    ASSERT(a1 <= a2);
+
+    ASSERT(!(a1 >= a2));
+    ASSERT(a1 >= a1);
+    ASSERT(a1 >= A(-3, 5));
+
+    ASSERT(!(a1 == a2));
+    ASSERT(a1 == A(-3, 5));
+    ASSERT(a1 == A(1 ,2));
+
+    ASSERT(a1 != a2);
+
+    //comparing to B
+    ASSERT(a1 <= B(-1, 30));
+    ASSERT(a1 <= B(10, 10));
+
+    ASSERT(a1 >= B(-1, 30));
+    ASSERT(a1 >= B(-10, -10));
+
+    ASSERT(a1 == B(-10, 10));
+    ASSERT(a1 == B(1, 2));
+
+    ASSERT(a1 != B(-10 ,-10));
+    ASSERT(a1 != B(100, 100));
 
 
+    //comparing to long int
+    ASSERT(a1 <= 10L);
+    ASSERT(a1 <= 1L);
+
+    ASSERT(a1 >= -1L);
+    ASSERT(a1 >= 1L);
+
+    ASSERT(a1 == 1L);
+
+    ASSERT(a1 != -5L);
+    ASSERT(a1 != 10L);
+
+    //check for overrides for certain types
+    ASSERT((HasLessT<A, A>::value));
+    ASSERT((HasLessT<A, B>::value));
+    ASSERT((HasLessT<A, int>::value));
+    ASSERT((HasLessT<A, uint64_t>::value));
+    ASSERT(!(HasLessT<A, double>::value));
+    ASSERT(!(HasLessT<A, float>::value));
+    ASSERT(!(HasLessT<A, std::string>::value));
 }
