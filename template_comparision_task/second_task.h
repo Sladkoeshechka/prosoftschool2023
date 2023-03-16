@@ -1,5 +1,11 @@
 #include <type_traits>
 
+#include "b.h"
+
+#ifndef A_CLASS
+#define A_CLASS
+
+
 template <typename T, typename ...OtherTypes>
 struct any_of
 {
@@ -47,3 +53,6 @@ private:
     int m_a = 0;
     int m_b = 0;
 };
+
+
+#endif //A_CLASS
